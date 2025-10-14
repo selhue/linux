@@ -24,9 +24,9 @@ chmod +x install_gext.sh
 ./install_gext.sh
 ```
 
-Make it NAI OS
+Make it Selhue OS
 ```sh
 curl -O https://selhue.github.io/linux/selhueos.sh
-chmod +x naios.sh
-./naios.sh
+chmod +x selhue.sh
+./selhue.sh
 ```
