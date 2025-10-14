@@ -11,22 +11,22 @@ app('LINUXX'); fav(2);
 [Manjaro GNOME](https://download.manjaro.org/gnome/25.0.6/manjaro-gnome-25.0.6-250730-linux612.iso)
 
 
-NaiOs Bg [Here](https://raw.githubusercontent.com/actwu/linux/refs/heads/WEBOPL/naios.png)
+NaiOs Bg [Here](https://raw.githubusercontent.com/actwu/linux/refs/heads/WEBOPL/selhueos.png)
 ---
-![](https://raw.githubusercontent.com/actwu/linux/refs/heads/WEBOPL/naios.png)
+![](https://raw.githubusercontent.com/actwu/linux/refs/heads/WEBOPL/selhueos.png)
 
 ---
 
 Make Sure install the TOOLSS
 ```sh
-curl -O https://actwu.github.io/linux/install_gext.sh
+curl -O https://selhue.github.io/linux/install_gext.sh
 chmod +x install_gext.sh
 ./install_gext.sh
 ```
 
 Make it NAI OS
 ```sh
-curl -O https://actwu.github.io/linux/naios.sh
+curl -O https://selhue.github.io/linux/selhueos.sh
 chmod +x naios.sh
 ./naios.sh
 ```
