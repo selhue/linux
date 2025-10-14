@@ -27,6 +27,6 @@ chmod +x install_gext.sh
 Make it Selhue OS
 ```sh
 curl -O https://selhue.github.io/linux/selhueos.sh
-chmod +x selhue.sh
-./selhue.sh
+chmod +x selhueos.sh
+./selhueos.sh
 ```
