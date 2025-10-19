@@ -56,54 +56,9 @@ echo "[+] GNOME is installed, continuing setup."
 fi
 
 
+echo "[+] Aligning..."
+gsettings set org.gnome.desktop.wm.preferences button-layout "close,minimize,maximize:"
 
-# --- Settings ---
-WALLPAPER_URL="https://raw.githubusercontent.com/selhue/linux/refs/heads/WEBOPL/selhueos.png"
-GTK_THEME_REPO="https://github.com/vinceliuice/WhiteSur-gtk-theme.git"
-ICON_THEME_REPO="https://github.com/vinceliuice/WhiteSur-icon-theme.git"
-OS_NAME="selhueOS"
-
-# --- Ensure Dependencies ---
-for cmd in gext git wget; do
-    command -v $cmd >/dev/null || { echo "$cmd not found. Please install it first."; exit 1; }
-done
-
-# --- Clean up old clones ---
-rm -rf /tmp/WhiteSur-gtk-theme /tmp/WhiteSur-icon-theme
-
-# --- Set Wallpaper ---
-echo "[+] Just the vibe..."
-mkdir -p ~/Pictures/Wallpapers
-wget -q "$WALLPAPER_URL" -O ~/Pictures/Wallpapers/naimacos.png
-gsettings set org.gnome.desktop.background picture-uri "file://$HOME/Pictures/Wallpapers/naimacos.png"
-gsettings set org.gnome.desktop.background picture-uri-dark "file://$HOME/Pictures/Wallpapers/naimacos.png"
-
-# --- Theme Installation ---
-echo "[+] Theming..."
-if [ ! -d "$HOME/.themes/selhue" ]; then
-    git clone --depth=1 "$GTK_THEME_REPO" /tmp/WhiteSur-gtk-theme
-    /tmp/WhiteSur-gtk-theme/install.sh -n selhue -l
-fi
-
-echo "[+] Icons..."
-if [ ! -d "$HOME/.icons/selhue" ]; then
-    git clone --depth=1 "$ICON_THEME_REPO" /tmp/WhiteSur-icon-theme
-    /tmp/WhiteSur-icon-theme/install.sh -a
-fi
-
-# --- Install Extensions with gext ---
-echo "[+] Installing recommended GNOME extensions..."
-for ext in dash-to-dock@micxgx.gmail.com user-theme@gnome-shell-extensions.gcampax.github.com ding@rastersoft.com; do
-    gext install $ext || true
-    gext enable $ext || true
-done
-
-
-# --- Apply Theme & Icons (Dark) ---
-echo "[+] Applying theme and icons (dark)..."
-gsettings set org.gnome.desktop.interface gtk-theme 'selhue-Dark'
-gsettings set org.gnome.desktop.wm.preferences theme 'selhue-Dark'
-gsettings set org.gnome.desktop.interface icon-theme 'WhiteSur-dark'
 
 
 
@@ -159,6 +114,58 @@ bsh "selhueos-shortcuts" '
   ..() { clear && ,,; }
   xx() { exit; }
 '
+
+
+# --- Settings ---
+WALLPAPER_URL="https://raw.githubusercontent.com/selhue/linux/refs/heads/WEBOPL/selhueos.png"
+GTK_THEME_REPO="https://github.com/vinceliuice/WhiteSur-gtk-theme.git"
+ICON_THEME_REPO="https://github.com/vinceliuice/WhiteSur-icon-theme.git"
+OS_NAME="selhueOS"
+
+
+# --- Ensure Dependencies ---
+for cmd in gext git wget; do
+    command -v $cmd >/dev/null || { echo "$cmd not found. Please install it first."; exit 1; }
+done
+
+# --- Clean up old clones ---
+rm -rf /tmp/WhiteSur-gtk-theme /tmp/WhiteSur-icon-theme
+
+
+# --- Set Wallpaper ---
+echo "[+] Just the vibe..."
+mkdir -p ~/Pictures/Wallpapers
+wget -q "$WALLPAPER_URL" -O ~/Pictures/Wallpapers/naimacos.png
+gsettings set org.gnome.desktop.background picture-uri "file://$HOME/Pictures/Wallpapers/naimacos.png"
+gsettings set org.gnome.desktop.background picture-uri-dark "file://$HOME/Pictures/Wallpapers/naimacos.png"
+
+
+# --- Theme Installation ---
+echo "[+] Theming..."
+if [ ! -d "$HOME/.themes/selhue" ]; then
+    git clone --depth=1 "$GTK_THEME_REPO" /tmp/WhiteSur-gtk-theme
+    /tmp/WhiteSur-gtk-theme/install.sh -n selhue -l
+fi
+
+echo "[+] Icons..."
+if [ ! -d "$HOME/.icons/selhue" ]; then
+    git clone --depth=1 "$ICON_THEME_REPO" /tmp/WhiteSur-icon-theme
+    /tmp/WhiteSur-icon-theme/install.sh -a
+fi
+
+# --- Install Extensions with gext ---
+echo "[+] Installing recommended GNOME extensions..."
+for ext in dash-to-dock@micxgx.gmail.com user-theme@gnome-shell-extensions.gcampax.github.com ding@rastersoft.com; do
+    gext install $ext || true
+    gext enable $ext || true
+done
+
+
+# --- Apply Theme & Icons (Dark) ---
+echo "[+] Applying theme and icons (dark)..."
+gsettings set org.gnome.desktop.interface gtk-theme 'selhue-Dark'
+gsettings set org.gnome.desktop.wm.preferences theme 'selhue-Dark'
+gsettings set org.gnome.desktop.interface icon-theme 'WhiteSur-dark'
 
 
 # --- Done ---
