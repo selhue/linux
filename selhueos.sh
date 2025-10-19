@@ -78,7 +78,7 @@ bsh() {
 }
 
 # --- Add selhueOS logo on terminal start ---
-bsh "nai-on_start()" 'selhue-on_start() {
+bsh "naios-on_start()" 'selhue-on_start() {
 echo -e "\e[1;34m
    ██████   █████████ ███        ███        ███ ███     ███ █████████
  ███    ███ ███       ███        ███        ███ ███     ███ ███      
@@ -92,9 +92,9 @@ echo -e "\e[1;34m
 }
 selhue-on_start'
 
-bsh "selhueos-history-alias" 'alias hh="history | less"'
+bsh "naios-history-alias" 'alias hh="history | less"'
 
-bsh "selhueos-info" '
+bsh "naios-info" '
 selhueos_info() {
 echo ""
 echo -e "  \e[1;34mOS:\e[0m $(hostnamectl --static) OS"
@@ -108,8 +108,8 @@ echo ""
 
 alias "?"="selhueos_info"
 '
-bsh "selhueos-prompt" 'PS1="\[\e[34m\]\h - \[\e[0m\]"'
-bsh "selhueos-shortcuts" '
+bsh "nai-prompt" 'PS1="\[\e[34m\]\h - \[\e[0m\]"'
+bsh "nai-shortcuts" '
   ,,() { source ~/.bashrc; }
   ..() { clear && ,,; }
   xx() { exit; }
