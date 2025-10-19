@@ -17,6 +17,46 @@ echo -e "\e[1;34m
 echo "selhue os installer"
 sudo -v
 
+# Check if GNOME is installed
+if ! command -v gnome-shell >/dev/null 2>&1; then
+echo "[+] GNOME not detected, installing GNOME desktop environment..."
+
+# Detect distribution and install GNOME accordingly
+if [ -f /etc/os-release ]; then
+. /etc/os-release
+case "$ID" in
+ubuntu|debian|linuxmint)
+sudo apt update && sudo apt install -y gnome ubuntu-gnome-desktop
+;;
+centos|rhel|fedora)
+sudo yum -y groups install "GNOME Desktop"
+;;
+arch|manjaro)
+sudo pacman -Syu --noconfirm gnome gnome-extra
+;;
+*)
+echo " unsupported distro $ID. Please install GNOME manually."
+exit 1
+;;
+esac
+else
+echo "Cannot detect Linux distribution. Install GNOME manually."
+exit 1
+fi
+
+# Optionally set graphical target for systemd systems
+if command -v systemctl >/dev/null 2>&1; then
+sudo systemctl set-default graphical.target
+fi
+
+echo "[+] GNOME installed. Please log out and back in or reboot before continuing."
+exit 0
+else
+echo "[+] GNOME is installed, continuing setup."
+fi
+
+
+
 # --- Settings ---
 WALLPAPER_URL="https://raw.githubusercontent.com/selhue/linux/refs/heads/WEBOPL/selhueos.png"
 GTK_THEME_REPO="https://github.com/vinceliuice/WhiteSur-gtk-theme.git"
@@ -31,6 +71,13 @@ done
 # --- Clean up old clones ---
 rm -rf /tmp/WhiteSur-gtk-theme /tmp/WhiteSur-icon-theme
 
+# --- Set Wallpaper ---
+echo "[+] Just the vibe..."
+mkdir -p ~/Pictures/Wallpapers
+wget -q "$WALLPAPER_URL" -O ~/Pictures/Wallpapers/naimacos.png
+gsettings set org.gnome.desktop.background picture-uri "file://$HOME/Pictures/Wallpapers/naimacos.png"
+gsettings set org.gnome.desktop.background picture-uri-dark "file://$HOME/Pictures/Wallpapers/naimacos.png"
+
 # --- Theme Installation ---
 echo "[+] Theming..."
 if [ ! -d "$HOME/.themes/selhue" ]; then
@@ -43,12 +90,6 @@ if [ ! -d "$HOME/.icons/selhue" ]; then
     git clone --depth=1 "$ICON_THEME_REPO" /tmp/WhiteSur-icon-theme
     /tmp/WhiteSur-icon-theme/install.sh -a
 fi
-
-# --- Set Wallpaper ---
-echo "[+] Just the vibe..."
-mkdir -p ~/Pictures/Wallpapers
-wget -q "$WALLPAPER_URL" -O ~/Pictures/Wallpapers/selhuemacos.png
-gsettings set org.gnome.desktop.background picture-uri "file://$HOME/Pictures/Wallpapers/selhuemacos.png"
 
 # --- Install Extensions with gext ---
 echo "[+] Installing recommended GNOME extensions..."
