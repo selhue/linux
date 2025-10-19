@@ -78,7 +78,7 @@ bsh() {
 }
 
 # --- Add selhueOS logo on terminal start ---
-bsh "selhue-on_start()" 'selhue-on_start() {
+bsh "nai-on_start()" 'selhue-on_start() {
 echo -e "\e[1;34m
    ██████   █████████ ███        ███        ███ ███     ███ █████████
  ███    ███ ███       ███        ███        ███ ███     ███ ███      
