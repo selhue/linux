@@ -13,14 +13,14 @@ app('LINUXX'); fav(2);
 
 Make Sure install the TOOLSS
 ```sh
-curl -O https://selhue.github.io/linux/install_gext.sh
+curl -O https://raw.githubusercontent.com/selhue/linux/refs/heads/WEBOPL/install_gext.sh
 chmod +x install_gext.sh
 ./install_gext.sh
 ```
 
 Make it Selhue OS
 ```sh
-curl -O https://selhue.github.io/linux/selhueos.sh
+curl -O https://raw.githubusercontent.com/selhue/linux/refs/heads/WEBOPL/selhueos.sh
 chmod +x selhueos.sh
 ./selhueos.sh
 ```
